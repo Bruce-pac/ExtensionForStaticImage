@@ -32,12 +32,12 @@ awk -F"_" '{ \
             out = out""toupper(substr($i,1,1))substr($i,2); \
         } \
     }; \
-    print out \
+    print out" "$0 \
 }' | \
 sort | uniq | \
 awk '{ \
-    print "    static var xxx_" $2 ": UIImage {"; \
-    print "        return UIImage(named: \"" $1 "\")!"; \
+    print "    static var xxx_" $1 ": UIImage {"; \
+    print "        return UIImage(named: \"" $2 "\")!"; \
     print "    }\n"; \
 }' >> imageExtension.swift
 
